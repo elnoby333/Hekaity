@@ -11,7 +11,7 @@ const multer=require('multer');
 const app=express();
 const PORT=Number(process.env.PORT||3000);
 const ROOT=__dirname;
-const db = new sqlite3.Database('/tmp/Hekaity.db');
+const db = new sqlite3.Database('./Hekaity.db');
 db.pragma('journal_mode = WAL');
 db.exec(`CREATE TABLE IF NOT EXISTS admins(id INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT UNIQUE NOT NULL,password_hash TEXT NOT NULL,created_at TEXT DEFAULT CURRENT_TIMESTAMP);CREATE TABLE IF NOT EXISTS customers(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,email TEXT UNIQUE NOT NULL,phone TEXT NOT NULL,password_hash TEXT NOT NULL,created_at TEXT DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL,author TEXT NOT NULL,description TEXT DEFAULT '',price REAL NOT NULL,category TEXT NOT NULL,stock INTEGER NOT NULL DEFAULT 0,cover TEXT DEFAULT '',isbn TEXT DEFAULT '',active INTEGER NOT NULL DEFAULT 1,created_at TEXT DEFAULT CURRENT_TIMESTAMP);
